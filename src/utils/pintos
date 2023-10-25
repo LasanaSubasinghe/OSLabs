@@ -253,6 +253,8 @@ sub set_disk {
   for my $role (keys %pt) {
     die "can't have two sources for \L$role\E partition"
     if exists $parts{$role};
+
+    my $kernel_dir = "/home/lasana/pintos/src/userprog/build";
     $parts{$role}{DISK} = $disk;
     $parts{$role}{START} = $pt{$role}{START};
     $parts{$role}{SECTORS} = $pt{$role}{SECTORS};

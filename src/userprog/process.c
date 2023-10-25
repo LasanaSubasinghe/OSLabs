@@ -42,6 +42,7 @@ process_execute (const char *file_name)
   tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy); 
+
   return tid;
 }
 
@@ -98,6 +99,10 @@ process_exit (void)
   struct thread *cur = thread_current ();
   uint32_t *pd;
 
+  //Printing the process name and exit status
+  if (cur->tid != TID_ERROR){
+    printf("%s: exit(%d)\n", cur->name, cur->status);
+  }
   /* Destroy the current process's page directory and switch back
      to the kernel-only page directory. */
   pd = cur->pagedir;
@@ -453,6 +458,7 @@ setup_stack (void **esp)
    with palloc_get_page().
    Returns true on success, false if UPAGE is already mapped or
    if memory allocation fails. */
+
 static bool
 install_page (void *upage, void *kpage, bool writable)
 {

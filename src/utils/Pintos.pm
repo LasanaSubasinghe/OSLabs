@@ -358,7 +358,7 @@ sub cyl_sectors {
 # If $file_name is undefined, tries to find the default loader.
 # Makes sure that the loader is a reasonable size.
 sub read_loader {
-  my ($name) = @_;
+  my ($name) = "/home/lasana/pintos/src/userprog/build/loader.bin";
   $name = find_file ("loader.bin") if !defined $name;
   die "Cannot find loader\n" if !defined $name;
 
